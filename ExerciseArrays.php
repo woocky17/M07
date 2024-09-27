@@ -99,6 +99,7 @@ var_dump($array_letter);
 
 
 
+
 /*
 6.
 Un profesor quiere registrar las notas de su clase en un array asociaƟvo. Las notas son
@@ -151,9 +152,31 @@ $cont ++;
 $promedio = $promedio / $cont;
 
 echo "Media de las notas: ".number_format( $promedio, 2 );
-echo"<br>Alumnoscon nota por encima de la media:<br>";
+echo"<br>Alumnos con nota por encima de la media:<br>";
 
 foreach ($notas as $key => $value) {
 if ($value > $promedio) {
 echo$key."<br>";}
 }
+
+/*
+8.
+Busca en el array la nota más alta (debe hacerse mediante código). Muestra la nota y
+el nombre del mejor alumno de la clase. Deberá funcionar para cualquier valor del
+array. 
+*/
+
+echo "<br><br>8.Busca en el array la nota más alta (debe hacerse mediante código). Muestra la nota y
+el nombre del mejor alumno de la clase. Deberá funcionar para cualquier valor del
+array.<br><br> ";
+
+$mejorNota = 0;
+foreach ($notas as $key => $value) {
+    if ($value > $mejorNota ){
+        $mejorNota = $value;
+        $nombre = $key;
+    }
+
+}
+
+echo "La mejor nota es de $nombre con un ".$mejorNota."<br>";

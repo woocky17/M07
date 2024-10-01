@@ -3,10 +3,22 @@ session_start();
 
 if (isset($_SESSION['worker'])) {
     $worker = $_SESSION['worker'];
-    
 } else {
-    $worker = '';
+    $worker = ''; 
 }
+
+if (isset($_SESSION['milk'])) {
+    $milk = $_SESSION['milk'];
+} else {
+    $milk = 0; 
+}
+
+if (isset($_SESSION['soft_drink'])) {
+    $soft_drink = $_SESSION['soft_drink'];
+} else {
+    $soft_drink = 0; 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -23,13 +35,13 @@ if (isset($_SESSION['worker'])) {
 
     <h2>Choose product:</h2>
     <br>
-    <select id="product">
+    <select id="product" name = "product">
         <option value="milk">Milk</option>
         <option value="soft_drink">Soft Drink</option>
     </select>
 
     <h2>Product quantity:</h2>
-    <input type="number" id="quantity">
+    <input type="number" id="quantity" name="quantity">
 
     <div>
         <input type="submit" name="send" value="add" id="add"></input>
@@ -40,28 +52,48 @@ if (isset($_SESSION['worker'])) {
     <div class="inventory">
         <h2>Inventary: </h2>
         <br>
-    <?php   
+    <?php  
+    
+    
+
 if (isset($_POST["send"])){
     if ($_POST["send"] == "add"){
-       if (isset($_POST["worker"])) {
+       if (isset($_POST["worker"]) & isset($_POST["product"]) & isset($_POST["quantity"])) {
            if ($_POST["worker"] != "") {
                 $worker = $_POST["worker"];
                 $_SESSION['worker'] = $worker;
             }
-        }
-
-        if (isset($_POST[''])){
-
-        }
-    }   
-}
-        echo "worker: $worker";
-       
-        if (isset($_SESSION["send"])) {
-            if ($_POST["send"] == "remove") {
-
+            switch ($_POST['product']) {
+                case 'milk':
+                    $milk += (int)$_POST['quantity'];
+                    $_SESSION['milk'] = $milk ;
+                    break;
+                case 'soft_drink':
+                    $soft_drink += (int)$_POST['quantity'];
+                    $_SESSION['soft_drink'] = $soft_drink ;
+                    break;
             }
         }
+    } 
+
+
+    }elseif ($_POST["send"] == "remove") {
+
+    }elseif ($_POST["send"] == "reset") {
+        session_unset(); 
+        session_destroy();  
+
+        $worker = 0;
+        $milk = 0;
+        $soft_drink = 0;
+    }
+      
+
+        echo "worker: $worker<br>";
+        echo "unit milk: $milk<br>";
+        echo "unit soft drink: $soft_drink";
+
+        
 
     ?>
     </div>

@@ -74,9 +74,6 @@ if (isset($_POST["send"])){
                     break;
             }
         }
-    } 
-
-
     }elseif ($_POST["send"] == "remove") {
 
     }elseif ($_POST["send"] == "reset") {
@@ -87,7 +84,7 @@ if (isset($_POST["send"])){
         $milk = 0;
         $soft_drink = 0;
     }
-      
+} 
 
         echo "worker: $worker<br>";
         echo "unit milk: $milk<br>";

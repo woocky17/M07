@@ -48,7 +48,7 @@ if (!isset($_SESSION["array"])) {
                 $promedio += $value;
                 $cont ++;
             }
-            echo"<br>Average: ". $promedio/$cont . "<br>";
+            echo"Average: ". $promedio/$cont . "<br>";
 
         }elseif ($_POST['send'] == 'Reiniciar') {
             $_SESSION["array"] = array(10,20,30);

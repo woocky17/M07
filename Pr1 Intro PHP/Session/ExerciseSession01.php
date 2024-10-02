@@ -75,6 +75,32 @@ if (isset($_POST["send"])){
             }
         }
     }elseif ($_POST["send"] == "remove") {
+        if (isset($_POST["worker"]) & isset($_POST["product"]) & isset($_POST["quantity"])) {
+            if ($_POST["worker"] != "") {
+                 $worker = $_POST["worker"];
+                 $_SESSION['worker'] = $worker;
+             }
+             switch ($_POST['product']) {
+                 case 'milk':
+                     
+                     if (($milk - (int)$_POST['quantity']) < 0) {
+                        echo'No puedes quitar mas de lo que ya hay. <br><br> ';
+                     }else{
+                        $milk -= (int)$_POST['quantity'];
+                     }
+                     $_SESSION['milk'] = $milk ;
+                     break;
+                 case 'soft_drink':
+                    if (($soft_drink - (int)$_POST['quantity']) < 0) {
+                        echo'No puedes quitar mas de lo que ya hay. <br><br> ';
+                     }else{
+                        $soft_drink -= (int)$_POST['quantity'];
+                     }
+                     $_SESSION['soft_drink'] = $soft_drink ;
+                     break;
+             }
+         }
+
 
     }elseif ($_POST["send"] == "reset") {
         session_unset(); 

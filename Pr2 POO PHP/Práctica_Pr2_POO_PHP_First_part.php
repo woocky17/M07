@@ -1,7 +1,7 @@
 <?php
 
-    $bankAccount1 = 400.0;
     $bankActivity1 = true;
+    $bankAccount1 = 400.0;
 
 echo"<h3>Account bank 1</h3>";
 
